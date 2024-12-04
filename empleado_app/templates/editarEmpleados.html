@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+<iiv class="row">
+
+<div class="col-md-4 offset-md-4">
+<!-- La targeta card -->
+<div class="card"> <!-- targeta -->
+    <div class="card-body">
+        <form action="/editarEmpleados/" method="POST"> {% csrf_token %} <!--- formulario -->
+            
+            <div class="form-group">
+                <input type="number" id="numID_empleado" name="numID_empleado" class="form-control"value="{{misEmpleados.ID_empleado}}" readonly required>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{misEmpleados.Nombre}}"  required>     
+            </div>
+
+            <div class="form-group py-2">
+                <input type="text" id="txtPuesto" name="txtPuesto" class="form-control" value="{{misEmpleados.Puesto}}" required>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="number" id="numSueldo" name="numSueldo" class="form-control" value="{{misEmpleados.Sueldo}}"  required>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="number" id="numTelefono" name="numTelefono" class="form-control" value="{{misEmpleados.Telefono}}"  required>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="date" id="datFecha_nac" name="datFecha_nac" class="form-control" value="{{misEmpleados.Fecha_nac|date:'Y-m-d'}}" required>
+            </div>
+
+            <div class="form-group py-2">
+                <input type="text" id="txtGenero" name="txtGenero" class="form-control" value="{{misEmpleados.Genero}}" required>
+            </div>
+            <div class="form-group py-1">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form><!--- formulario -->
+    </div>
+</div> <!-- targeta -->
+
+
+<!-- La targeta card -->
+
+</div><!-- columna -->
+
+</div><!-- La fila -->
+
+{% endblock %}
