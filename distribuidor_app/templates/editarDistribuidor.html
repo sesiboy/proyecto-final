@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarDistribuidor/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="numID_distribuidor" name="numID_distribuidor" class="form-control" value="{{ misDistribuidores.id_distribuidor }}" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{ misDistribuidores.nombre }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="numTelefono" name="numTelefono" class="form-control" value="{{ misDistribuidores.telefono }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" value="{{ misDistribuidores.direccion }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtCiudad" name="txtCiudad" class="form-control" value="{{ misDistribuidores.ciudad }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtEstado" name="txtEstado" class="form-control" value="{{ misDistribuidores.estado }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <textarea id="txtProductosDistribuidos" name="txtProductosDistribuidos" class="form-control" rows="3" required>{{ misDistribuidores.productos_distribuidos }}</textarea>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

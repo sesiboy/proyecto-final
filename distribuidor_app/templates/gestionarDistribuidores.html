@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h1> DISTRIBUIDORES </h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarDistribuidor/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="numID_distribuidor" name="numID_distribuidor" class="form-control" placeholder="ID del distribuidor" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre del distribuidor" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="numTelefono" name="numTelefono" class="form-control" placeholder="Teléfono del distribuidor" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" placeholder="Dirección del distribuidor" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtCiudad" name="txtCiudad" class="form-control" placeholder="Ciudad del distribuidor" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtEstado" name="txtEstado" class="form-control" placeholder="Estado del distribuidor" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <textarea id="txtProductosDistribuidos" name="txtProductosDistribuidos" class="form-control" placeholder="Productos distribuidos" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1>Listado de Distribuidores</h1>
+        <img class="w-50" src="{% static  'img/distribuidor.jpg' %}" alt="distribuidor" width="200" height="auto">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Ciudad</th>
+                        <th>Estado</th>
+                        <th>Productos Distribuidos</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in misDistribuidores %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ d.id_distribuidor }}</td>
+                        <td>{{ d.nombre }}</td>
+                        <td>{{ d.telefono }}</td>
+                        <td>{{ d.direccion }}</td>
+                        <td>{{ d.ciudad }}</td>
+                        <td>{{ d.estado }}</td>
+                        <td>{{ d.productos_distribuidos }}</td>
+                        <td><a href="seleccionarDistribuidor/{{ d.id_distribuidor }}" class="btn btn-info">Editar</a></td>
+                        <td><a href="borrarDistribuidor/{{ d.id_distribuidor }}" class="btn btn-danger">Borrar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
