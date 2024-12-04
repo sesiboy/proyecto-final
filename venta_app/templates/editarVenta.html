@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarVenta/" method="POST"> 
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="numID_venta" name="numID_venta" class="form-control" value="{{ venta.id_venta }}" readonly required>
+                    </div>
+                    
+                    <div class="form-group py-2">
+                        <input type="number" id="numID_empleado" name="numID_empleado" class="form-control" value="{{ venta.id_empleado }}" required>
+                    </div>
+                    
+                    <div class="form-group py-2">
+                        <input type="number" id="numID_cliente" name="numID_cliente" class="form-control" value="{{ venta.id_cliente }}" required>
+                    </div>
+                    
+                    <div class="form-group py-2">
+                        <input type="number" id="numID_producto" name="numID_producto" class="form-control" value="{{ venta.id_producto }}" required>
+                    </div>
+                    
+                    <div class="form-group py-2">
+                        <input type="number" id="numID_sucursal" name="numID_sucursal" class="form-control" value="{{ venta.id_sucursal }}" required>
+                    </div>
+                    
+                    <div class="form-group py-2">
+                        <input type="date" id="fechaVenta" name="fechaVenta" class="form-control" value="{{ venta.fecha |date:'Y-m-d'}}" required>
+                    </div>
+                    
+                    <div class="form-group py-2">
+                        <input type="number" id="numTotal" name="numTotal" class="form-control" value="{{ venta.total }}" required>
+                    </div>
+                    
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
