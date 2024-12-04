@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h1> CLIENTES </h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarCliente/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="numID_cliente" name="numID_cliente" class="form-control" placeholder="ID del cliente" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre del cliente" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" placeholder="Correo del cliente" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="numTelefono" name="numTelefono" class="form-control" placeholder="Teléfono del cliente" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" placeholder="Dirección del cliente" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtCiudad" name="txtCiudad" class="form-control" placeholder="Ciudad del cliente" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtEstado" name="txtEstado" class="form-control" placeholder="Estado del cliente" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1>Listado de Clientes</h1>
+        <img class="w-50" src="{% static  'img/cliente.jpg' %}" alt="distribuidor" width="200" height="auto">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Ciudad</th>
+                        <th>Estado</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in misClientes %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ c.id_cliente }}</td>
+                        <td>{{ c.nombre }}</td>
+                        <td>{{ c.correo }}</td>
+                        <td>{{ c.telefono }}</td>
+                        <td>{{ c.direccion }}</td>
+                        <td>{{ c.ciudad }}</td>
+                        <td>{{ c.estado }}</td>
+                        <td><a href="seleccionarCliente/{{ c.id_cliente }}" class="btn btn-info">Editar</a></td>
+                        <td><a href="borrarCliente/{{ c.id_cliente }}" class="btn btn-danger">Borrar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
