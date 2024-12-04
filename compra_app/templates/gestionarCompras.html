@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4">
+        <h1>COMPRAS</h1>
+        <div class="card">
+            <div class="card-body">
+                <form action="/registrarCompra/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" name="numId_compra" class="form-control" placeholder="ID de la compra" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numCantidad" class="form-control" placeholder="Cantidad" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" name="txtFecha_compra" class="form-control" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" name="txtForma_pago" class="form-control" placeholder="Forma de pago" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numTotal" class="form-control" placeholder="Total" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numId_producto" class="form-control" placeholder="ID del producto" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" name="numId_encargo" class="form-control" placeholder="ID del encargo" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h1>Listado de Compras</h1>
+        <img class="w-50" src="{% static 'img/compra.jpg' %}" alt="distribuidor" width="200" height="auto">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID Compra</th>
+                        <th>Cantidad</th>
+                        <th>Fecha</th>
+                        <th>Forma Pago</th>
+                        <th>Total</th>
+                        <th>ID Producto</th>
+                        <th>ID Encargo</th>
+                        <th colspan="2">Editar/Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for compra in misCompras %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ compra.id_compra }}</td>
+                            <td>{{ compra.cantidad }}</td>
+                            <td>{{ compra.fecha_compra }}</td>
+                            <td>{{ compra.forma_pago }}</td>
+                            <td>{{ compra.total }}</td>
+                            <td>{{ compra.id_producto }}</td>
+                            <td>{{ compra.id_encargo }}</td>
+                            <td><a href="seleccionarCompra/{{ compra.id_compra }}" class="btn btn-info">Editar</a></td>
+                            <td><a href="borrarCompra/{{ compra.id_compra }}" class="btn btn-danger">Borrar</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
