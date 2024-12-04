@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form action="/editarProducto/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                        <input type="number" id="numID_producto" name="numID_producto" class="form-control" value="{{ misProductos.id_producto }}" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" value="{{ misProductos.nombre }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="txtCategoria" name="txtCategoria" class="form-control" value="{{ misProductos.categoria }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="numPrecio" name="numPrecio" class="form-control" value="{{ misProductos.precio }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="numCantidad" name="numCantidad" class="form-control" value="{{misProductos.cantidad_disponible}}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="date" id="fechaVencimiento" name="fechaVencimiento" class="form-control" value="{{ misProductos.fecha_vencimiento|date:'Y-m-d'}}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="numID_distribuidor" name="numID_distribuidor" class="form-control" value="{{ misProductos.id_distribuidor }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="number" id="numID_sucursal" name="numID_sucursal" class="form-control" value="{{ misProductos.id_sucursal }}" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
